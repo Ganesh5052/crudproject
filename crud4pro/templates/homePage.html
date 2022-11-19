@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    {% include 'cdnlines.html' %}
+
+    <style media="screen">
+      h1{
+        text-shadow: 2px 2px red;
+        text-decoration: underline;
+      }
+      table{
+        margin-top: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container_fluid">
+      <div class="row">
+        <div class="col-md-12">
+          <h1 class="text-center">Employee Data:)</h1>
+          {% if employees %}
+          <table class="table table-bordered">
+            <thead class="bg-success text-white text-center">
+              <tr>
+                <th>Employee ID:</th>
+                <th>Employee Name:</th>
+                <th>Salary</th>
+                <th>Experience</th>
+                <th>Location</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody class="bg-dark text-white text-center">
+              {% for employee in employees %}
+              <tr>
+                <td>{{ employee.employee_id }}</td>
+                <td>{{ employee.employee_name }}</td>
+                <td>{{ employee.salary }}</td>
+                <td>{{ employee.experience }}</td>
+                <td>{{ employee.location }}</td>
+                 <td>
+                   <a href="{% url 'update_data' employee.id %}" class="btn btn-sm btn-warning text-white">Update</a>
+                   <a href="{% url 'delete_data' employee.id %}" class="btn btn-sm btn-danger">Delete</a>
+                 </td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+          {% else %}
+          <h2 class="text-center">No Employee information Available</h2>
+          {% endif %}
+          <a href="{% url 'add_employee' %}" class="btn btn-lg btn-success">Add Employee</a>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    {% include 'cdnlines.html' %}
+
+    <style media="screen">
+      h2{
+        text-shadow: 2px 2px tomato;
+        text-decoration: underline;
+      }
+      form{
+        margin-top: 40px;
+        border: 2px solid DodgerBlue;
+        padding: 20px;
+        border-radius: 5px;
+      }
+      input[type]{
+        margin-top: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container_fluid">
+      <div class="row">
+        <div class="offset-md-3 col-md-6">
+          <h2 class="text-center">Please Update Employee Data:)</h2>
+          <form method="POST" action="{% url 'save_update_data' employee.id %}">
+            {% csrf_token %}
+            <label>Enter Employee Id:)</label>
+            <input type="number" name="empid" value="{{ employee.employee_id }}" class="form-control" autocomplete="off">
+
+            <label>Enter Employee Name:)</label>
+            <input type="text" name="empname" value="{{ employee.employee_name }}" class="form-control" autocomplete="off">
+
+            <label>Salary:)</label>
+            <input type="number" name="salary" value="{{ employee.salary }}" class="form-control" autocomplete="off">
+
+            <label>Experience:)</label>
+            <input type="num" name="exp" value="{{ employee.experience }}" class="form-control" autocomplete="off">
+
+            <label>Location:)</label>
+            <input type="text" name="loc" value="{{ employee.location }}" class="form-control" autocomplete="off">
+
+            <label></label>
+            <input type="submit" value="Update" class="btn btn-lg  btn-success">
+            <input type="recet" value="cancel" class="btn btn-lg btn-danger">
+          </form>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
